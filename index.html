@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Voice project</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "poppins";
+        }
+
+        .header1 {
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+
+        }
+
+        .header2 {
+            height: 30px;
+            width: 50%;
+            border-radius: 10px;
+            background-color: greenyellow;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 1px 1px 2px 0px #BECFA3;
+            padding: 0 5px;
+
+
+
+        }
+
+        .header2 button {
+            padding: 3px;
+            border: none;
+            border-radius: 3px;
+            outline: none;
+            background-color: #ffffcc;
+        }
+
+        .header3 {
+            width: 50%;
+            padding: 20px;
+        }
+
+        .box {
+            width: 17%;
+            height: 80px;
+            background-color: greenyellow;
+            border-radius: 3px;
+            position: relative;
+
+
+        }
+
+        .box img {
+            width: 60px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+
+        .box i {
+            position: absolute;
+            bottom: 5px;
+            right: 4px;
+            opacity: 0.4;
+        }
+
+        .header4 {
+
+            width: 50%;
+            padding: 20px;
+        }
+
+        .box2 {
+            width: 50%;
+            height: 90px;
+            background-color: greenyellow;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            border-radius: 7px;
+            /* padding: 8px; */
+        }
+        .box3{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffcc;
+            width:70%;
+            border:7px;
+            gap:7px;
+            
+        }
+        .box2 p{
+           font-size: 12px;
+        }
+        .box2 p span{
+            font-weight: bold;
+        }
+        
+        
+        .show{
+            display:block;
+           
+        }
+        .header5{
+            width:50%;
+           
+        }
+        .box4{
+            width:40%;
+            background-color: greenyellow;
+            padding: 20px;
+            border-radius: 4px;
+     
+          
+        }
+        .box4 p:first-child{
+            margin-bottom: 15px;
+            font-size: 25px;
+        }
+        #btn{
+        
+        width: 120px;
+        height: 40px;
+        position: relative;
+        background-color: #ffffcc;
+        border: none;
+
+        
+
+    }
+    #vpload{
+    width: 120px;
+    opacity: 0;
+    height: 40px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#sec{
+    width: 400px;
+    height: 120px;
+    background-color: greenyellow;
+    display:none;
+
+
+    
+
+}
+#video{
+    border: none;
+    width: 100%;
+    margin-top: 25px;
+    background-color: greenyellow;
+}
+    
+#pause,#play{
+  background-color: white;
+  width: 60px;
+  height: 20px;  
+  color: black;
+  border-radius:50px;
+    }
+    #recording_box{
+        width:25px;
+        height: 23px;
+        border: 1px solid black;
+        margin-left: -150px;
+        position: relative;
+
+    }
+    #recoding_page{
+        display: none;
+    }
+    #start,#stop{
+        background-color: greenyellow;
+        border: none;
+        width: 150px;
+        height: 50px;
+        border-radius: 10px;
+        
+
+
+
+
+    }
+    #audio{
+        margin-left: 100px;
+        margin-top: 50px;
+        position: relative;
+    }
+
+
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <center>
+        <div class="header1">
+            <img src="https://cdn.vocaroo.com/images/titletext-1x.gif">
+            <img src="https://cdn.vocaroo.com/images/mascot-male-100px.png">
+        </div>
+        <div class="header2">
+            <p>Vocaroo - The premier voice recording service.</p>
+            <button onclick="show()"  onclick="hide()">Upload <i class="fa-solid fa-upload"></i></button>
+            <!---recoding box-->
+            <button id="recording_box" onclick="recoding()"><i class="fas fa-microphone" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div class="header3">
+            <div class="box">
+                <img src="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/512/sound-recorder-icon.png"
+                    alt="">
+                <i  onclick ="popup()"class="fa-solid fa-gear"></i>
+            </div>
+        </div>
+        <div class="header4 hide">
+            <div class="box2">
+                <div class="box3">
+                    <button  id="btn">Upload  Audio File <input type="file" accept=".mp3" id="vpload" onchange="vuload()"> </button>
+                    
+            
+                    
+                
+
+
+                    <i class="fa-solid fa-upload"></i>
+                </div>
+               
+
+                <p>Please <span>do not upload copyrighted music</span> etc.</p>
+
+
+            </div>
+
+        </div>
+        <section id="sec" class="hide">
+            <audio src="_Gippy_Grewal__Tanu_Grewal__Happy_Raikoti__New_Punjabi_Movie_Song(256k).mp3" width="400px" height="400px" id="video" controls="controls"></audio>
+            <button onclick="vPlay()" id="play">Play</button>
+            <button onclick="vPause()" id="pause">Pause</button>
+        </section>
+
+        <!-- popup window -->
+         <div class="header5">
+            <div class="box4 hide">
+                <p >Recorder settings
+                    
+                </p>
+                <p>Remove background noise</p>
+                <p>Auto adjust Volume</p>
+            </div>
+           
+         </div>
+         <!----recodiin page-->
+         <header id="recoding_page">
+            <h1>Microphone Recorder</h1>
+            <button id="start">Start Recording</button>
+            <button id="stop" disabled>Stop Recording</button>
+            <audio id="audio" controls></audio>
+         </header>
+         
+    </center>
+
+    <script>
+
+        header3=document.querySelector(".header3");
+        header4=document.querySelector(".header4");
+        header5=document.querySelector("#sec");
+
+        box4=document.querySelector(".box4");
+
+        function show(){
+             header3.classList.toggle("hide");
+             header4.classList.toggle("hide")
+         
+             
+
+        }
+        function popup(){
+            box4.classList.toggle("show")
+         
+             
+
+        }
+        function clck(){
+            header5.classList.toggle("show");
+            
+
+             
+            
+        }
+        function vuload(){
+            var d = document.getElementById("sec")
+            var a = document.getElementById("vpload").value.replace(/.*(\/|\\)/,'');
+            var b = document.getElementById("video");
+            var header5 =document.getElementById("box4");
+
+            b.src=a;
+            d.style.display=("block");
+            box4.style.display=("none");
+
+
+         }
+         function vPlay(){
+            var  a = document.getElementById("video");
+            a.play();
+        }
+        function vPause(){
+            var a = document.getElementById("video");
+            a.pause();
+        }
+        function recoding(){
+            var a = document.getElementById("recoding_page");
+            var header5 =document.getElementById("box4");
+            header4=document.querySelector(".header4");
+
+            
+           
+
+            a.style.display=("block");
+
+            
+
+
+
+            
+        }
+
+
+        
+
+
+        const startButton = document.getElementById('start');
+        const stopButton = document.getElementById('stop');
+        const audio = document.getElementById('audio');
+        let mediaRecorder;
+        let audioChunks = [];
+
+        startButton.addEventListener('click', async () => {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.addEventListener('dataavailable', event => {
+                audioChunks.push(event.data);
+            });
+
+            mediaRecorder.addEventListener('stop', () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                audio.src = audioUrl;
+                audioChunks = [];
+            });
+
+            mediaRecorder.start();
+            startButton.disabled = true;
+            stopButton.disabled = false;
+        });
+
+        stopButton.addEventListener('click', () => {
+            mediaRecorder.stop();
+            startButton.disabled = false;
+            stopButton.disabled = true;
+        });
+        
+    </script>
+</body>
+
+</html>
